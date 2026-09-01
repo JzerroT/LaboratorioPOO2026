@@ -1,0 +1,28 @@
+flowchart LR
+  A(["Persona virtual"])
+
+  subgraph SIS["Sistema: Casa Virtual"]
+    direction TB
+    CU1["CU-01 Recorrer la casa"]
+    CU2["CU-02 Usar un mueble"]
+    CU3["CU-03 Cocinar o calentar comida"]
+    CU4["CU-04 Sacar comida de la heladera"]
+    CU5["CU-05 Pedir una pizza"]
+    CU6["CU-06 Descansar"]
+    CU7["CU-07 Limpiar o tender"]
+    CU8["CU-08 Romper un mueble"]
+    CU9["CU-09 Terminar el día"]
+  end
+
+  A --- CU1
+  A --- CU2
+  A --- CU5
+  A --- CU9
+
+  CU2 -.->|include| CU1
+  CU3 -.->|extend| CU2
+  CU4 -.->|extend| CU2
+  CU6 -.->|extend| CU2
+  CU7 -.->|extend| CU2
+  CU8 -.->|extend| CU2
+  CU9 -.->|include| CU6

@@ -1,0 +1,102 @@
+classDiagram
+direction LR
+
+namespace Arranque {
+class App {
+  +main(String[] args)$
+}
+}
+
+namespace Vista {
+class MenuConsola {
+  -Scanner teclado
+  +mostrarBienvenida(Casa c)
+  +mostrarEstado(Persona p)
+  +elegirZona() Zona
+  +elegirMueble(Casa c, Zona z) Mueble
+  +elegirAccion(Mueble m) String
+  +mostrarResultado(String texto)
+  +mostrarCierre(Persona p, Casa c)
+}
+}
+
+namespace Modelo.Hogar {
+class ArmadorDeCasa {
+  +casaDeEjemplo() Casa$
+}
+class Casa {
+  -String nombre
+  -ArrayList~Mueble~ muebles
+  +agregarMueble(Mueble m)
+  +mueblesDe(Zona z) ArrayList~Mueble~
+  +buscarPorNombre(String n) Mueble
+  +mueblesRotos() ArrayList~Mueble~
+  +mueblesSucios() ArrayList~Mueble~
+  +limpiarLaCasa()
+}
+
+class Persona {
+  -String nombre
+  -Zona zonaActual
+  -int energia
+  -int hambre
+  -boolean dormida
+  -ArrayList~String~ bitacoraDelDia
+  +irA(Zona z) String
+  +usarMueble(Mueble m, String accion) String
+  +dormir()
+  +estado() String
+  +resumenDelDia() String
+}
+}
+
+namespace Modelo.Muebles {
+class Mueble {
+  <<abstract>>
+}
+}
+
+namespace Modelo.Tipos {
+class Posicion {
+  -float x
+  -float y
+  -float z
+}
+class Zona {
+  <<enumeration>>
+  COCINA
+  DORMITORIO
+  BANIO
+  COMEDOR
+  LIVING
+}
+class Material {
+  <<enumeration>>
+  MADERA
+  METAL
+  PLASTICO
+  TELA
+  VIDRIO
+}
+class Calidad {
+  <<enumeration>>
+  BUENA
+  MEDIA
+  MALA
+}
+}
+
+App ..> MenuConsola : usa
+App ..> ArmadorDeCasa : usa
+App ..> Persona : coordina
+MenuConsola ..> Casa : consulta
+MenuConsola ..> Mueble : consulta
+ArmadorDeCasa ..> Casa : crea
+Casa "1" *-- "0..*" Mueble : contiene
+Persona "1" --> "1" Casa : vive en
+Persona ..> Mueble : usa
+Mueble "1" *-- "1" Posicion
+Mueble ..> Zona
+Mueble ..> Material
+Mueble ..> Calidad
+Persona ..> Zona

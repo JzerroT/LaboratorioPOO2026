@@ -1,0 +1,11 @@
+flowchart TD
+  I(["App.main()<br/>ArmadorDeCasa.casaDeEjemplo() + new Persona"]) --> Z{"menu.elegirZona()"}
+  Z -->|0 Terminar| F(["menu.mostrarCierre()"])
+  Z -->|Zona| M["persona.irA(zona)<br/>menu.elegirMueble(casa, zona)"]
+  M -->|0 Volver| Z
+  M --> H{"menu.elegirAccion(mueble)<br/>mueble.accionesDisponibles()"}
+  H -->|0 Volver| Z
+  H --> E["persona.usarMueble(mueble, accion)"]
+  E --> D{"¿durmió en la cama?"}
+  D -->|no| Z
+  D -->|sí| F

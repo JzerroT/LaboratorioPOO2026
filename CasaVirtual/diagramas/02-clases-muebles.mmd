@@ -1,0 +1,93 @@
+classDiagram
+direction TB
+
+namespace Modelo.Muebles {
+class Mueble {
+  <<abstract>>
+  -String nombre
+  -Posicion posicion
+  -Material material
+  -int capacidadPersonas
+  -int personasUsando
+  -Zona zona
+  -Calidad calidad
+  -boolean limpio
+  -boolean roto
+  -String motivoRotura
+  +usar() String
+  +dejarDeUsar()
+  +mover(float x, float y, float z)
+  +ensuciarse()
+  +limpiarse()
+  +romperse(String motivo)
+  +descripcion() String
+  +accionesDisponibles() String[]
+  +hacer(String accion) String
+}
+}
+
+namespace Modelo.Muebles.Descanso {
+class MuebleDescanso {
+  <<abstract>>
+  -int comodidad
+  -float cargaMaximaKg
+  -int proteccionFrio
+  +romperPorExcesoDeCarga(float pesoKg) String
+  +abrigar() String
+}
+class Cama {
+  -boolean tendida
+}
+class Silla {
+  +hacer(String accion) String
+}
+class Sillon {
+  +hacer(String accion) String
+}
+}
+
+namespace Modelo.Muebles.Cocina {
+class MuebleCocina {
+  <<abstract>>
+  -float temperaturaMaxima
+  -float temperaturaMinima
+  -float temperaturaActual
+  -boolean encendido
+  +encender() String
+  +apagar() String
+  +regularTemperatura(float t) String
+  +cocinar(String comida) String
+  +romperPorQuemaduraElectrica() String
+  +romperPorDestruccionFisica() String
+}
+class Horno {
+  -boolean hornallaEncendida
+}
+class Heladera {
+  -ArrayList~String~ comidas
+  +guardarComida(String c) String
+  +sacarComida() String
+}
+class Microondas {
+  -int potencia
+}
+}
+
+namespace Modelo.Muebles.Comunicacion {
+class Telefono {
+  -boolean pedidoEnCamino
+  -String ultimoPedido
+  +pedir(String pedido) String
+  +recibirPedido() String
+}
+}
+
+Mueble <|-- MuebleDescanso
+Mueble <|-- MuebleCocina
+Mueble <|-- Telefono
+MuebleDescanso <|-- Cama
+MuebleDescanso <|-- Silla
+MuebleDescanso <|-- Sillon
+MuebleCocina <|-- Horno
+MuebleCocina <|-- Heladera
+MuebleCocina <|-- Microondas

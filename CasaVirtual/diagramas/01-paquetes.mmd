@@ -1,0 +1,24 @@
+flowchart TD
+  APP["App<br/><small>paquete por defecto</small>"]
+  VIS["Vista"]
+  HOG["Modelo.Hogar"]
+  DES["Modelo.Muebles.Descanso"]
+  COC["Modelo.Muebles.Cocina"]
+  COM["Modelo.Muebles.Comunicacion"]
+  MUE["Modelo.Muebles"]
+  TIP["Modelo.Tipos"]
+
+  APP --> VIS
+  APP --> HOG
+  VIS --> HOG
+  VIS --> MUE
+  HOG --> MUE
+  HOG --> DES
+  HOG --> COC
+  HOG --> COM
+  DES --> MUE
+  COC --> MUE
+  COM --> MUE
+  MUE --> TIP
+  VIS --> TIP
+  HOG --> TIP
