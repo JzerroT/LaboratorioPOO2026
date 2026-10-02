@@ -3,6 +3,7 @@ package Modelo;
 public class Personaje 
 {
 	private int secreto;
+	private int id = 1;
 	private int ubicacion;
 	private int nivelLocura;
 	private static final int MAXIMO_LOCURA=100;
@@ -12,6 +13,7 @@ public class Personaje
 		this.secreto = secreto;
 		this.ubicacion = ubicacion;
 		this.nivelLocura = nivelLocura;
+		this.id =+1;
 	}
 	
 	public Personaje()
@@ -87,6 +89,10 @@ public class Personaje
 	public void setSecreto (int secreto)
 	{
 		this.secreto=secreto;
+	}
+
+	public int getId() {
+		return id;
 	}
 	
 
